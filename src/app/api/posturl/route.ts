@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
 		if (error) {
 			return NextResponse.json({ error: error.message }, { status: 500 });
 		}
-		const baseurl = process.env.NEXT_PUBLIC_SITE_URL;
+		const baseurl = process.env.VERCEL_SITE_URL;
 		const shortUrl = `${baseurl}/${urlCode}`;
 
 		return NextResponse.json({ short_url: shortUrl }, { status: 200 });
