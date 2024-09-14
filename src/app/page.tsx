@@ -27,7 +27,7 @@ export default function Home() {
 	};
 	return (
 		<div className="flex flex-col items-center">
-			<h1 className="w-1/2 mx-auto my-28 text-center">Shorten URL</h1>
+			<h1 className="w-1/2 mx-auto my-28 text-center text-xl">Shorten URL</h1>
 			<UrlForm
 				onSubmit={handleSubmit}
 				shortUrl={getShortUrl}

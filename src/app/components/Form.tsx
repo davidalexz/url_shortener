@@ -51,9 +51,15 @@ export default function UrlForm({
 			<form className="flex justify-center gap-2" onSubmit={handleSubmit}>
 				<input
 					type="url"
-					className="w-96 border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:bg-[#FFA6F6] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-md"
+					className={`w-96 border-black border-2 p-2.5 rounded-md focus:outline-none
+						${
+							shortUrl
+								? 'bg-gray-300 cursor-not-allowed'
+								: 'focus:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]'
+						}`}
 					value={getUrl}
 					onChange={(e) => setGetUrl(e.target.value)}
+					disabled={!!shortUrl}
 					required
 					placeholder="full link here!"
 				/>
@@ -63,7 +69,7 @@ export default function UrlForm({
 					disabled={isSubmitting}
 					className={`h-12 border-black border-2 p-2.5 rounded-md ${
 						isSubmitting
-							? 'bg-gray-400 cursor-not-allowed'
+							? 'bg-gray-300 cursor-not-allowed'
 							: 'bg-[#A6FAFF] hover:bg-[#79F7FF] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:bg-[#00E1EF]'
 					}`}
 				>
@@ -75,7 +81,7 @@ export default function UrlForm({
 				<div className="relative mt-5 w-96">
 					<input
 						type="text"
-						className="w-full border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:bg-[#FFA6F6] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-md"
+						className="w-full border-black border-2 p-2.5 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] rounded-md"
 						placeholder="short link here!"
 						readOnly
 						value={shortUrl || ''}
@@ -84,9 +90,9 @@ export default function UrlForm({
 						className="absolute right-3 top-1/2 transform -translate-y-1/2 hover:cursor-pointer transition-transform hover:scale-110 active:scale-95"
 						onClick={handleCopy}
 					/>
-					{copyMessage && <p className="mt-2">{copyMessage}</p>}
 				</div>
 			)}
+			{copyMessage && <p className="mt-2">{copyMessage}</p>}
 		</div>
 	);
 }
